@@ -1,0 +1,11 @@
+linux> sudo apt-get sqlite3 
+linux> sqlite3
+sqlite> .quit
+sqlite> .header on
+sqlite> .mode column
+sqlite> .tables
+sqlite> .table R
+sqlite> .schema r
+sqlite> .open
+sqlite>
+sqlite>

@@ -1,0 +1,66 @@
+1. The quiz in pp. 47 (see Lec3-SQL.pdf).
+    a. For all students in the university who have taken some course, find their names and the course ID of all courses they took
+
+    b. List the names of all companies and the number of their employees (employee database)
+
+2. Exercise 3.16  (see pp. 120, Ref[1]).
+Consider the employee database of Figure 3.19, where the primary keys are underlined. Give an expression in SQL for each of the following queries.
+    a. Find ID and name of each employee who lives in the same city as the location of the company for which the employee works.
+    b. Find ID and name of each employee who lives in the same city and on the same street as does her or his manager.
+    c. Find ID and name of each employee who earns more than the average salary of all employees of her or his company.
+    d.  Find the company that has the smallest payroll.
+
+Solution
+1.a
+sqlite> 
+SELECT name, course_id 
+FROM student AS s, takes AS t 
+WHERE s.ID = t.ID 
+ORDER BY name;
+
+1.b (no .db file provided)
+sqlite> 
+SELECT company_name, count(works.ID) 
+FROM company, employee, works 
+WHERE employee.ID = works.ID and 
+      works.company_name = company.company_name;
+
+2.a
+sqlite>
+SELECT emplyee.ID, person_name
+FROM employee, works, company
+WHERE employee.ID = works.ID and
+      employee.city = company.city and
+      works.company_name = company.company_name;
+
+2.b
+sqlite>
+SELECT e1.ID, e1.person_name
+FROM employee AS e1, employee AS e2, manages AS m
+WHERE e2.ID = m.manager_id and
+      e1.ID = m.ID and
+      e1.street = e2.street and
+      e1.city = e2.city;
+
+2.c
+sqlite>
+SELECT e.ID, e.person_name
+FROM works AS w, employee AS e
+GROUP BY w.company_name
+HAVING w.ID = e.ID and
+       w.salary > avg(w.salary);
+
+2.d
+sqlite>
+SELECT company_name, sum(salary) as sum_sal
+FROM works
+GROUP BY company_name
+ORDER BY sum_sal ACS LIMIT 1;
+
+
+
+APPENDIX employee database Figure 3.19
+employee (ID, person_name, street, city)->ID
+works (ID, company_name, salary)->ID
+company(company_name, city)->company_name
+manages(ID, manager_id)->ID
