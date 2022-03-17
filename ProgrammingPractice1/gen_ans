@@ -1,1 +1,1 @@
-sqlite3 .read ./init.sql .read ./question_1.sql > out1.txt
+sqlite3 test.db <question_1.sql> out1.txt && sqlite3 test.db <question_2.sql> out2.txt && sqlite3 test.db <question_3.sql> out3.txt && sqlite3 test.db <question_4.sql> out4.txt && sqlite3 test.db <question_5.sql> out5.txt && sqlite3 test.db <question_6.sql> out6.txt

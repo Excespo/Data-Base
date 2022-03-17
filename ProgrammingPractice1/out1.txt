@@ -1,0 +1,7 @@
+Biology|1
+Comp. Sci.|4
+Elec. Eng.|2
+Finance|1
+History|1
+Music|1
+Physics|3

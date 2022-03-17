@@ -1,0 +1,4 @@
+Biology|120.0
+Elec. Eng.|79.0
+Finance|110.0
+History|80.0
